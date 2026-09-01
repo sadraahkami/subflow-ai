@@ -1,0 +1,66 @@
+name: Build & Release SubFlow AI
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build-windows:
+    name: Build & Publish Windows Binary
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pyinstaller
+
+      - name: Run Test Suite
+        run: |
+          python -m unittest discover tests
+
+      - name: Build Executable
+        run: |
+          pyinstaller SubFlowAI.spec --noconfirm
+
+      - name: Package Portable Zip
+        shell: pwsh
+        run: |
+          Compress-Archive -Path "dist/SubFlowAI.exe", "README.md", "LICENSE" -DestinationPath "dist/SubFlowAI-Windows-Portable.zip" -Force
+          Get-ChildItem -Path dist
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/SubFlowAI.exe
+            dist/SubFlowAI-Windows-Portable.zip
+          name: "SubFlow AI ${{ github.ref_name }} - Offline AI Speech & Subtitle Studio"
+          body: |
+            ## 🎙️ SubFlow AI - Offline AI Speech, Subtitle & Audio Studio
+
+            All-in-one local AI speech-to-text, multi-format subtitle generation (SRT, VTT, ASS, JSON), video subtitle burning, and audio enhancement suite.
+
+            ### 🚀 Highlights:
+            - ⚡ **100% Offline AI:** Powered by Faster-Whisper with CPU/GPU auto-acceleration.
+            - 🌐 **90+ Languages:** Deep support for Persian (Farsi RTL) & English.
+            - 🎬 **Subtitle Burning:** Hardcode animated karaoke/TikTok style subtitles into videos.
+            - 📦 **Zero Installation Needed:** Download standalone `.exe` below and run instantly!
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

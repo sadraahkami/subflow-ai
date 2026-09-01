@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  subflow-ai:
+    build: .
+    container_name: subflow-ai-studio
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./data:/app/data
