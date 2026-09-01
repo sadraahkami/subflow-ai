@@ -25,7 +25,6 @@ venv/
 ENV/
 .idea/
 .vscode/
-*.spec
 *.log
 *.tmp
 temp/
