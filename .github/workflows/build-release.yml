@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - 'v*'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -33,7 +34,7 @@ jobs:
         run: |
           python -m unittest discover tests
 
-      - name: Build Executable
+      - name: Build Standalone Executable
         run: |
           pyinstaller SubFlowAI.spec --noconfirm
 
@@ -45,6 +46,7 @@ jobs:
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
             dist/SubFlowAI.exe
