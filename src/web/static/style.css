@@ -285,6 +285,9 @@ body {
   padding: 14px;
   resize: vertical;
   line-height: 1.6;
+  direction: ltr !important;
+  text-align: left !important;
+  unicode-bidi: plaintext;
 }
 
 .status-alert {

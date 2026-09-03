@@ -14,7 +14,7 @@
         <div class="logo-icon">🎙️</div>
         <div>
           <h1>SubFlow AI</h1>
-          <p class="subtitle">استودیوی هوشمند رونویسی گفتار و ساخت خودکار زیرنویس</p>
+          <p class="subtitle" data-i18n="app_subtitle">استودیوی هوشمند رونویسی گفتار و ساخت خودکار زیرنویس</p>
         </div>
       </div>
       <div class="header-actions">
@@ -28,9 +28,9 @@
           <input type="file" id="fileInput" accept="audio/*,video/*" style="display: none;">
           <div class="dropzone-content">
             <div class="upload-icon">📁</div>
-            <h3 id="dropText">فایل صوتی یا ویدیویی را اینجا رها کنید</h3>
-            <p class="muted-text">پشتیبانی از MP3, WAV, MP4, MKV, MOV, FLAC, WebM</p>
-            <button class="btn btn-primary" onclick="document.getElementById('fileInput').click()">انتخاب فایل...</button>
+            <h3 id="dropText" data-i18n="drop_title">فایل صوتی یا ویدیویی را اینجا رها کنید</h3>
+            <p class="muted-text" data-i18n="drop_desc">پشتیبانی از MP3, WAV, MP4, MKV, MOV, FLAC, WebM</p>
+            <button class="btn btn-primary" onclick="document.getElementById('fileInput').click()" data-i18n="btn_select_file">انتخاب فایل...</button>
           </div>
           <div id="fileInfo" class="file-info hidden">
             <div class="file-details">
@@ -42,67 +42,67 @@
         </div>
 
         <div class="card settings-card">
-          <h3>تنظیمات هوش مصنوعی و خروجی</h3>
+          <h3 data-i18n="settings_title">تنظیمات هوش مصنوعی و خروجی</h3>
           
           <div class="form-group">
-            <label for="modelSelect">مدل رونویسی (Whisper Model):</label>
+            <label for="modelSelect" data-i18n="model_label">مدل رونویسی (Whisper Model):</label>
             <select id="modelSelect" class="form-control">
-              <option value="base" selected>Base (استاندارد و بالانس - پیشنهادی)</option>
-              <option value="tiny">Tiny (فوق‌العاده سریع)</option>
-              <option value="small">Small (دقت بالا - کیفیت عالی)</option>
-              <option value="medium">Medium (حداکثر دقت)</option>
+              <option value="base" selected id="optModelBase">Base (استاندارد و بالانس - پیشنهادی)</option>
+              <option value="tiny" id="optModelTiny">Tiny (فوق‌العاده سریع)</option>
+              <option value="small" id="optModelSmall">Small (دقت بالا - کیفیت عالی)</option>
+              <option value="medium" id="optModelMedium">Medium (حداکثر دقت)</option>
             </select>
           </div>
 
           <div class="form-group">
-            <label for="langSelect">زبان گفتار (Language):</label>
+            <label for="langSelect" data-i18n="speech_lang_label">زبان گفتار (Language):</label>
             <select id="langSelect" class="form-control">
-              <option value="auto" selected>تشخیص خودکار (Auto Detect)</option>
-              <option value="fa">فارسی (Persian)</option>
-              <option value="en">انگلیسی (English)</option>
-              <option value="ar">عربی (Arabic)</option>
-              <option value="fr">فرانسوی (French)</option>
-              <option value="de">آلمانی (German)</option>
-              <option value="es">اسپانیایی (Spanish)</option>
-              <option value="tr">ترکی (Turkish)</option>
+              <option value="auto" selected id="optLangAuto">تشخیص خودکار (Auto Detect)</option>
+              <option value="fa" id="optLangFa">فارسی (Persian)</option>
+              <option value="en" id="optLangEn">انگلیسی (English)</option>
+              <option value="ar" id="optLangAr">عربی (Arabic)</option>
+              <option value="fr" id="optLangFr">فرانسوی (French)</option>
+              <option value="de" id="optLangDe">آلمانی (German)</option>
+              <option value="es" id="optLangEs">اسپانیایی (Spanish)</option>
+              <option value="tr" id="optLangTr">ترکی (Turkish)</option>
             </select>
           </div>
 
           <div class="form-group">
-            <label for="formatSelect">فرمت خروجی زیرنویس:</label>
+            <label for="formatSelect" data-i18n="sub_fmt_label">فرمت خروجی زیرنویس:</label>
             <select id="formatSelect" class="form-control">
-              <option value="srt" selected>SRT (استاندارد پلیرها و یوتیوب)</option>
-              <option value="vtt">VTT (استاندارد صفحات وب HTML5)</option>
-              <option value="ass">ASS (زیرنویس پیشرفته با استایل)</option>
-              <option value="txt">TXT (متن ساده پیوسته)</option>
-              <option value="json">JSON (متادیتای کامل زمان‌بندی)</option>
+              <option value="srt" selected id="optFmtSrt">SRT (استاندارد پلیرها و یوتیوب)</option>
+              <option value="vtt" id="optFmtVtt">VTT (استاندارد صفحات وب HTML5)</option>
+              <option value="ass" id="optFmtAss">ASS (زیرنویس پیشرفته با استایل)</option>
+              <option value="txt" id="optFmtTxt">TXT (متن ساده پیوسته)</option>
+              <option value="json" id="optFmtJson">JSON (متادیتای کامل زمان‌بندی)</option>
             </select>
           </div>
 
           <div class="form-check">
             <input type="checkbox" id="chkVad" checked>
-            <label for="chkVad">فیلتر سکوت و تشخیص صدای انسان (VAD Filter)</label>
+            <label for="chkVad" data-i18n="chk_vad">فیلتر سکوت و تشخیص صدای انسان (VAD Filter)</label>
           </div>
 
-          <button id="startBtn" class="btn btn-success btn-block" disabled>شروع رونویسی و ساخت زیرنویس</button>
+          <button id="startBtn" class="btn btn-success btn-block" disabled data-i18n="btn_start">شروع رونویسی و ساخت زیرنویس</button>
         </div>
       </div>
 
       <div class="right-panel">
         <div class="card preview-card">
           <div class="preview-header">
-            <h3>پیش‌نمایش متن و زیرنویس تولید شده</h3>
+            <h3 data-i18n="preview_title">پیش‌نمایش متن و زیرنویس تولید شده</h3>
             <div class="preview-actions">
-              <button id="copyBtn" class="btn btn-secondary btn-sm" disabled>کپی متن</button>
-              <button id="downloadBtn" class="btn btn-primary btn-sm" disabled>دانلود فایل زیرنویس</button>
+              <button id="copyBtn" class="btn btn-secondary btn-sm" disabled data-i18n="btn_copy">کپی متن</button>
+              <button id="downloadBtn" class="btn btn-primary btn-sm" disabled data-i18n="btn_download">دانلود فایل زیرنویس</button>
             </div>
           </div>
           <div class="editor-wrapper">
-            <textarea id="previewText" placeholder="متن رونویسی شده به همراه زمان‌بندی اینجا نمایش داده می‌شود..." readonly></textarea>
+            <textarea id="previewText" placeholder="متن یا زیرنویس تولید شده پس از رونویسی در اینجا نمایش داده می‌شود..."></textarea>
           </div>
           <div id="statusAlert" class="status-alert hidden">
             <div class="spinner"></div>
-            <span id="statusMsg">در حال پردازش صوت...</span>
+            <span id="statusMsg" data-i18n="status_ready">در حال رونویسی هوشمند فایل...</span>
           </div>
         </div>
       </div>
