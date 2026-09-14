@@ -33,3 +33,5 @@ output/
 raw_conv_*
 img2pdf_*
 subflow_temp_*
+# Internal technical notes
+TECHNICAL_DOCS.md
